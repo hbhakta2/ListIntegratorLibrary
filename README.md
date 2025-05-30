@@ -1,0 +1,2 @@
+# ListIntegratorLibrary
+ListIntegratorLibrary library to support HotelRoomConfigurator and HousekeepingRoomListAssigner applications
