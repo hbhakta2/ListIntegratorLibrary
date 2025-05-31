@@ -35,7 +35,7 @@ public class RoomListOperator {
     
     /**
      * add() method
-     * If list contains does not contain room,
+     * If list does not contain room,
      *  Adds room to the checkedOutList or to the stayOverList based on room status,
      *  Adds room to the combinedList,
      * Else
@@ -145,16 +145,15 @@ public class RoomListOperator {
         String sp = String.format("%" + 23 + "s", "|\n");
         for (Room room : stayOverList) {
             sb.append("|-------------------------------|\n");
-            sb.append("|").append(room).append("\t\t|\n");
+            sb.append("|").append(room).append(sp);
         }
         sb.append("|-------------------------------|\n");
         sb.append("|===============================|\n");
         if (stayOverList.size() > 9) {
-            sb.append("| COUNT: ").append(stayOverList.size()).append(String.format("%" + 23 + "s", "|\n"));
+            sb.append("| COUNT: ").append(stayOverList.size()).append(sp);
         } else {
             sb.append("| COUNT: ").append(stayOverList.size()).append(String.format("%" + 24 + "s", "|\n"));
         }
-        
         sb.append("|===============================|\n");
         return sb.toString();
     }
@@ -174,7 +173,7 @@ public class RoomListOperator {
         
         if (coutLines.length >= soverLines.length) {
             for (int i = 0; i < coutLines.length; i++) {
-                sb.append(coutLines[i]).append("\t");
+                sb.append(coutLines[i]).append("    ");
                 if (i < soverLines.length) {
                     sb.append(soverLines[i]);
                 }
@@ -183,7 +182,7 @@ public class RoomListOperator {
         } else {
             for (int i = 0; i < soverLines.length; i++) {
                 if (i < coutLines.length) {
-                    sb.append(coutLines[i]).append("\t");
+                    sb.append(coutLines[i]).append("    ");
                 } else {
                     sb.append("                                     ");
                 }
