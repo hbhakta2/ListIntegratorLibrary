@@ -61,7 +61,7 @@ public class ListIntegratorFrame extends JFrame implements ActionListener, KeyLi
         integerField.setColumns(5);
         //integerField.setSize(dimension);
         integerField.setFont(fieldFont);
-        integerField.setDocument(new LimitedLengthDocument(3));
+        integerField.setDocument(new LimitedLengthDocument(4));
         integerField.addKeyListener(this);
         
         roomTypeTextLabel = new JLabel();

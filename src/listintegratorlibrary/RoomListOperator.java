@@ -127,6 +127,8 @@ public class RoomListOperator {
         }
         sb.append("|-------------------------------|\n");
         sb.append("|===============================|\n");
+        sb.append("| COUNT: ").append(checkedOutList.size()).append("\t\t\t|\n");
+        sb.append("|===============================|\n");
         sb.append("\n");
         return sb.toString();
     }
@@ -140,12 +142,19 @@ public class RoomListOperator {
         sb.append("|===============================|\n");
         sb.append("| Stay Over (S/O)               |\n");
         sb.append("|===============================|\n");
+        String sp = String.format("%" + 23 + "s", "|\n");
         for (Room room : stayOverList) {
             sb.append("|-------------------------------|\n");
-            String sp = String.format("%" + 23 + "s", "|\n");
-            sb.append("|").append(room).append(sp);
+            sb.append("|").append(room).append("\t\t|\n");
         }
         sb.append("|-------------------------------|\n");
+        sb.append("|===============================|\n");
+        if (stayOverList.size() > 9) {
+            sb.append("| COUNT: ").append(stayOverList.size()).append(String.format("%" + 23 + "s", "|\n"));
+        } else {
+            sb.append("| COUNT: ").append(stayOverList.size()).append(String.format("%" + 24 + "s", "|\n"));
+        }
+        
         sb.append("|===============================|\n");
         return sb.toString();
     }
@@ -165,7 +174,7 @@ public class RoomListOperator {
         
         if (coutLines.length >= soverLines.length) {
             for (int i = 0; i < coutLines.length; i++) {
-                sb.append(coutLines[i]).append("    ");
+                sb.append(coutLines[i]).append("\t");
                 if (i < soverLines.length) {
                     sb.append(soverLines[i]);
                 }
@@ -174,7 +183,7 @@ public class RoomListOperator {
         } else {
             for (int i = 0; i < soverLines.length; i++) {
                 if (i < coutLines.length) {
-                    sb.append(coutLines[i]).append("    ");
+                    sb.append(coutLines[i]).append("\t");
                 } else {
                     sb.append("                                     ");
                 }
@@ -182,6 +191,12 @@ public class RoomListOperator {
             }
         }
         return sb.toString();
+    }
+
+    public void clearAllList() {
+        combinedList.clear();
+        checkedOutList.clear();
+        stayOverList.clear();
     }
     
 }
