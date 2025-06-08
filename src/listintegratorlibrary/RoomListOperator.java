@@ -4,6 +4,7 @@
  */
 package listintegratorlibrary;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,6 +20,8 @@ public class RoomListOperator {
     private List<Room> combinedList;
     private List<Room> checkedOutList;
     private List<Room> stayOverList;
+    private Double wagePerCheckedOutRoomCleaned;
+    private Double wagePerStayOverRoomCleaned;
     
     /**
      * Constructor
@@ -192,6 +195,53 @@ public class RoomListOperator {
         return sb.toString();
     }
 
+    public double getWagePerCheckedOutRoomCleaned() {
+        return wagePerCheckedOutRoomCleaned;
+    }
+
+    public void setWagePerCheckedOutRoomCleaned(Double wage) {
+        this.wagePerCheckedOutRoomCleaned = wage;
+    }
+
+    public double getWagePerStayOverRoomCleaned() {
+        return this.wagePerStayOverRoomCleaned;
+    }
+
+    public void setWagePerStayOverRoomCleaned(Double wage) {
+        this.wagePerStayOverRoomCleaned = wage;
+    }
+    
+    public String getOptionalContent(String date) {
+        StringBuilder sb = new StringBuilder();
+        Integer coCount = checkedOutList.size();
+        Integer soCount = stayOverList.size();
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        Double totalCoWage = coCount * wagePerCheckedOutRoomCleaned;
+        Double totalSoWage = soCount * wagePerStayOverRoomCleaned;
+        Double grandTotal = totalCoWage + totalSoWage;
+        
+        currency.format(totalCoWage);
+        currency.format(totalSoWage);
+        currency.format(grandTotal);
+        String formattedCoCount = String.format("%" + 4 + "d", coCount);
+        String formattedSoCount = String.format("%" + 4 + "d", soCount);
+        String formattedCOWage = String.format("%-" + 6 + ".2f", wagePerCheckedOutRoomCleaned);
+        String formattedSOWage = String.format("%-" + 6 + ".2f", wagePerStayOverRoomCleaned);
+        String formattedTotalCoWage = String.format("%" + 7 + ".2f", totalCoWage);
+        String formattedTotalSoWage = String.format("%" + 7 + ".2f", totalSoWage);
+        String formattedGrandTotal = String.format("%" + 7 + ".2f", grandTotal);
+        sb.append("\n");
+        sb.append("|-------------------------------|\n");
+        sb.append("|Wage Calculation | ").append(date).append("  |\n");
+        sb.append("|-------------------------------|\n");
+        sb.append("|  C/O: ").append(formattedCoCount).append(" x ").append(formattedCOWage).append(" = ").append(formattedTotalCoWage).append(" |\n");
+        sb.append("|+ S/O: ").append(formattedSoCount).append(" x ").append(formattedSOWage).append(" = ").append(formattedTotalSoWage).append(" |\n");
+        sb.append("|-------------------------------|\n");
+        sb.append("|Total: \t\t").append(formattedGrandTotal).append(" |\n");
+        sb.append("|-------------------------------|\n");
+        return sb.toString();
+    }
+    
     public void clearAllList() {
         combinedList.clear();
         checkedOutList.clear();

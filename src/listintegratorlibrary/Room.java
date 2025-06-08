@@ -14,6 +14,7 @@ public class Room {
     private Integer number;
     private String roomType;
     private RoomStatus status;
+    private String notes;
     
     /**
      * optional enumerated RoomType
@@ -108,6 +109,23 @@ public class Room {
         this.status = status;
     }
 
+    /**
+     * Gets room notes
+     * @return 
+     */
+    public String getNotes() {
+        return notes;
+    }
+
+    /**
+     * Sets room notes
+     * @param notes 
+     */
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    
     /**
      * toString() method
      * @return String formatted Room object

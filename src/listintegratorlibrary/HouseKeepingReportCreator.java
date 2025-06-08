@@ -44,5 +44,11 @@ public class HouseKeepingReportCreator {
     public String getReport() {
         return houseKeepingReport;
     }
+
+    public void appendOptionalContent(String optionalContent) {
+        StringBuilder sb = new StringBuilder(houseKeepingReport);
+        sb.append(optionalContent);
+        this.houseKeepingReport = sb.toString();
+    }
     
 }
