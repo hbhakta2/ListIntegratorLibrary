@@ -148,7 +148,7 @@ public class RoomListOperator {
         String sp = String.format("%" + 23 + "s", "|\n");
         for (Room room : stayOverList) {
             sb.append("|-------------------------------|\n");
-            sb.append("|").append(room).append(sp);
+            sb.append("|").append(room).append(sp);           
         }
         sb.append("|-------------------------------|\n");
         sb.append("|===============================|\n");
@@ -213,31 +213,31 @@ public class RoomListOperator {
     
     public String getOptionalContent(String date) {
         StringBuilder sb = new StringBuilder();
-        Integer coCount = checkedOutList.size();
-        Integer soCount = stayOverList.size();
+        Integer checkedOutCount = checkedOutList.size();
+        Integer stayOverCount = stayOverList.size();
         NumberFormat currency = NumberFormat.getCurrencyInstance();
-        Double totalCoWage = coCount * wagePerCheckedOutRoomCleaned;
-        Double totalSoWage = soCount * wagePerStayOverRoomCleaned;
-        Double grandTotal = totalCoWage + totalSoWage;
+        Double totalCheckedOutWage = checkedOutCount * wagePerCheckedOutRoomCleaned;
+        Double totalStayOverWage = stayOverCount * wagePerStayOverRoomCleaned;
+        Double totalDailyWage = totalCheckedOutWage + totalStayOverWage;
         
-        currency.format(totalCoWage);
-        currency.format(totalSoWage);
-        currency.format(grandTotal);
-        String formattedCoCount = String.format("%" + 4 + "d", coCount);
-        String formattedSoCount = String.format("%" + 4 + "d", soCount);
-        String formattedCOWage = String.format("%-" + 6 + ".2f", wagePerCheckedOutRoomCleaned);
-        String formattedSOWage = String.format("%-" + 6 + ".2f", wagePerStayOverRoomCleaned);
-        String formattedTotalCoWage = String.format("%" + 7 + ".2f", totalCoWage);
-        String formattedTotalSoWage = String.format("%" + 7 + ".2f", totalSoWage);
-        String formattedGrandTotal = String.format("%" + 7 + ".2f", grandTotal);
+        currency.format(totalCheckedOutWage);
+        currency.format(totalStayOverWage);
+        currency.format(totalDailyWage);
+        String formattedCheckedOutCount = String.format("%" + 4 + "d", checkedOutCount);
+        String formattedStayOverCount = String.format("%" + 4 + "d", stayOverCount);
+        String formattedCheckedOutWage = String.format("%-" + 6 + ".2f", wagePerCheckedOutRoomCleaned);
+        String formattedStayOverWage = String.format("%-" + 6 + ".2f", wagePerStayOverRoomCleaned);
+        String formattedTotalCheckedOutWage = String.format("%" + 7 + ".2f", totalCheckedOutWage);
+        String formattedTotalStayOverWage = String.format("%" + 7 + ".2f", totalStayOverWage);
+        String formattedGrandTotalPerDay = String.format("%" + 7 + ".2f", totalDailyWage);
         sb.append("\n");
         sb.append("|-------------------------------|\n");
         sb.append("|Wage Calculation | ").append(date).append("  |\n");
         sb.append("|-------------------------------|\n");
-        sb.append("|  C/O: ").append(formattedCoCount).append(" x ").append(formattedCOWage).append(" = ").append(formattedTotalCoWage).append(" |\n");
-        sb.append("|+ S/O: ").append(formattedSoCount).append(" x ").append(formattedSOWage).append(" = ").append(formattedTotalSoWage).append(" |\n");
+        sb.append("|  C/O: ").append(formattedCheckedOutCount).append(" x ").append(formattedCheckedOutWage).append(" = ").append(formattedTotalCheckedOutWage).append(" |\n");
+        sb.append("|+ S/O: ").append(formattedStayOverCount).append(" x ").append(formattedStayOverWage).append(" = ").append(formattedTotalStayOverWage).append(" |\n");
         sb.append("|-------------------------------|\n");
-        sb.append("|Total: \t\t").append(formattedGrandTotal).append(" |\n");
+        sb.append("|Total: \t\t").append(formattedGrandTotalPerDay).append(" |\n");
         sb.append("|-------------------------------|\n");
         return sb.toString();
     }

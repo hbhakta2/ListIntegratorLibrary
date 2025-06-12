@@ -17,13 +17,6 @@ public class Room {
     private String notes;
     
     /**
-     * optional enumerated RoomType
-     */
-    public enum RoomType {
-        NK, NQ, NQQ, NQQ3, SQ, SQQ, SQQ3;
-    }
-    
-    /**
      * enumerated Room status
      */
     public enum RoomStatus {

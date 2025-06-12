@@ -15,14 +15,14 @@ import javax.swing.text.PlainDocument;
  */
 public class LimitedLengthDocument extends PlainDocument {
     
-    private final int limit;
+    private final Integer limit;
     
     /**
      * Constructor takes int
      * @param limit 
      * and sets limit of digits allowed
      */
-    public LimitedLengthDocument(int limit) {
+    public LimitedLengthDocument(Integer limit) {
         this.limit = limit;
     }
     
